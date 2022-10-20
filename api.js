@@ -1,9 +1,11 @@
-const dbocategoria = require('./dbcategoria');
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-const { response } = require('express');
+
+const dbocategoria = require('./dbcategoria');
+const morgan = require('morgan');
+const helmet = require('helmet');
 
 const swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
@@ -20,6 +22,8 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocument)
 );
+app.use(helmet());
+app.use(morgan('tiny'));
 
 router.route('/categoria').get((request, response) => {
     dbocategoria.getCategorias().then(result => {

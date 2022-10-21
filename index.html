@@ -1,0 +1,193 @@
+<html>
+<style>
+    /*#region Clase de paginas estilo PDF (A4)*/
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Tahoma";
+    }
+
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    .page {
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 1cm;
+        margin: 1cm auto;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+        padding: 10px;
+        border: 1px black solid;
+        height: 275mm;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    @media print {
+        .page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+    }
+
+    /*#endregion */
+    /*#region Clase de Checks*/
+    /* The check */
+    .check {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 10px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .check input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .check:hover input~.checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .check input:checked~.checkmark {
+        background-color: #2196F3;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .check input:checked~.checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .check .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    /*#endregion*/
+</style>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="subpage">
+            <div>
+                <h3 style="margin: 0; background-color: #2196F3;text-align: center;">REPORTE DE ESTUDIO SOCIOECONÓMICO
+                </h3>
+            </div>
+            <br>
+            <div style="display: inline-block;">
+                <div style="display: inline-block;width: 50%;">
+                    <label style="display: inline-block;" class="check">1er. estudio
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    &nbsp
+                    <label style="display: inline-block;" class="check">2do estudio
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                &nbsp
+                <div style="display: inline-block;width: 50%;">
+                    <label for="fname" style="font-size: 10px;text-align: center;">Fecha: </label>
+                    <div style="display: inline-block;width: 10%;">
+                        <div style="display: inline-block; font-size: 15px;text-align: center;">
+                            <label for="fname" style="font-size: 10px;">(AÑO)</label>
+                            <input type="text" id="fname" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div style="display: inline-block;width: 10%;">
+                        <div style="display: inline-block;text-align: center;">
+                            <label for="fname" style="font-size: 10px;">(MES)</label>
+                            <input type="text" id="fname" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div style="display: inline-block;width: 10%;">
+                        <div style="display: inline-block;text-align: center;">
+                            <label for="fname" style="font-size: 10px;">(DÍA)</label>
+                            <input type="text" id="fname" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="subpage">
+            <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    Column
+                  </div>
+                  <div class="col">
+                    Column
+                  </div>
+                  <div class="col">
+                    Column
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</body>
+
+</html>

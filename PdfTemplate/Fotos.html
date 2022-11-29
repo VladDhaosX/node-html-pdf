@@ -1,0 +1,172 @@
+<html>
+
+<style>
+    table {
+        width: 100%;
+        table-layout: fixed;
+        page-break-inside: auto;
+    }
+
+    table,
+    th,
+    td {
+        /*border: 1px solid black;*/
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    tr td {
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*white-space: nowrap;*/
+    }
+
+    tfoot {
+        display: table-footer-group;
+    }
+
+    body {
+        font-family: Arial;
+        font-size: 10px;
+        /*text-transform:lowercase;*/
+    }
+
+    span {
+        display: inline-block;
+        /*text-transform: lowercase;*/
+        white-space: initial;
+    }
+
+    span:first-letter {
+        text-transform: uppercase;
+    }
+
+    .titleBar {
+        padding-left: 10px;
+    }
+
+    .negrita {
+        font-weight: bold;
+    }
+
+    .short {
+        width: 35%;
+    }
+
+    .long {
+        width: 65%;
+    }
+
+    hr {
+        clear: both;
+        margin-top: 10px;
+        margin-bottom: 13px;
+        border: 0;
+        height: 2px;
+        background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    }
+
+    .grid-ord {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 25px;
+        grid-row-gap: 5px;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+    }
+
+    .grid-ord img {
+        width: 250px;
+        height: auto;
+        /*height: 400px;*/
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:active {
+        text-decoration: underline;
+    }
+
+    .StatusTitle {
+        font-family: Arial;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .responseOptions {
+        border: 2px solid white;
+    }
+
+    .icon {
+        width: 100px;
+        display: block;
+        height: 20px;
+        text-decoration: none;
+        padding-left: 20px;
+    }
+
+    .icon:before {
+        content: '';
+        background: url('https://banorte.almer.com.mx/FloorPlanBanorte/img/checked.png');
+        background-size: cover;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        margin-left: -20px;
+    }
+
+    .icon2 {
+        width: 100px;
+        display: block;
+        height: 20px;
+        text-decoration: none;
+        padding-left: 20px;
+    }
+
+    .icon2:before {
+        content: '';
+        background: url('https://banorte.almer.com.mx/FloorPlanBanorte/img/check.png');
+        background-size: cover;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        margin-left: -20px;
+    }
+</style>
+
+<head>
+</head>
+
+<body>
+    <% for(var i = 0; i < Fotos.length; i++) {%>
+        <% console.log(i) %> 
+        <img style="width:87%;" src="data:image/png;base64,"<%= Fotos[i] %> />
+      <% } %>
+</body>
+
+</html>

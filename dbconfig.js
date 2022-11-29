@@ -1,8 +1,8 @@
 const config = {
-    user : 'usr_refaccionaria',
-    password : 'bzcLXWztcC6A2',
+    user : 'FloorPlanUser',
+    password : '93F29751-A6AC',
     server: 'portalesdemo',
-    database: 'RefaccionesDina',
+    database: 'FloorPlanBanorte',
     options:{
         trustedconnection: false,
         enableArithAbort: true,

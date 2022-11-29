@@ -1,0 +1,2704 @@
+<html>
+
+<style>
+    table {
+        width: 100%;
+        table-layout: fixed;
+        page-break-inside: auto;
+    }
+
+    table,
+    th,
+    td {
+        /*border: 1px solid black;*/
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    tr td {
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*white-space: nowrap;*/
+    }
+
+    tfoot {
+        display: table-footer-group;
+    }
+
+    body {
+        font-family: Arial;
+        font-size: 10px;
+        /*text-transform:lowercase;*/
+    }
+
+    span {
+        display: inline-block;
+        /*text-transform: lowercase;*/
+        white-space: initial;
+    }
+
+    span:first-letter {
+        text-transform: uppercase;
+    }
+
+    .titleBar {
+        padding-left: 10px;
+    }
+
+    .negrita {
+        font-weight: bold;
+    }
+
+    .short {
+        width: 35%;
+    }
+
+    .long {
+        width: 65%;
+    }
+
+    hr {
+        clear: both;
+        margin-top: 10px;
+        margin-bottom: 13px;
+        border: 0;
+        height: 2px;
+        background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    }
+
+    .grid-ord {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 25px;
+        grid-row-gap: 5px;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+    }
+
+    .grid-ord img {
+        width: 250px;
+        height: auto;
+        /*height: 400px;*/
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:active {
+        text-decoration: underline;
+    }
+
+    .StatusTitle {
+        font-family: Arial;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .responseOptions {
+        border: 2px solid white;
+    }
+
+    .icon {
+        width: 100px;
+        display: block;
+        height: 20px;
+        text-decoration: none;
+        padding-left: 20px;
+    }
+
+    .icon:before {
+        content: '';
+        background: url('https://banorte.almer.com.mx/FloorPlanBanorte/img/checked.png');
+        background-size: cover;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        margin-left: -20px;
+    }
+
+    .icon2 {
+        width: 100px;
+        display: block;
+        height: 20px;
+        text-decoration: none;
+        padding-left: 20px;
+    }
+
+    .icon2:before {
+        content: '';
+        background: url('https://banorte.almer.com.mx/FloorPlanBanorte/img/check.png');
+        background-size: cover;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        margin-left: -20px;
+    }
+</style>
+
+<head>
+</head>
+
+<body>
+    <!--#region Primera pagina  -->
+    <img style="display: none;"
+        src='data:image/png;base64,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' />
+    <div>
+        <table>
+            <tr>
+                <td colspan="6" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    REPORTE DE ESTUDIO SOCIOECONÓMICO @Model.title
+                </td>
+            </tr>
+            <tr>
+                <td class="responseOptions">
+                    <span class='icon' style="font-size: 13px;">&nbsp;1er. estudio&nbsp;&nbsp;&nbsp;</span>
+                </td>
+                <td class="responseOptions">
+                    <span class='icon' style="font-size: 13px;">&nbsp;2do estudio&nbsp;&nbsp;&nbsp;</span>
+                </td>
+                <td class="responseOptions" style="text-align: right;font-size: 13px;">
+                    Fecha
+                </td>
+                <td class="responseOptions" style="text-align: center;">
+                    <label style="font-size: 10px;">(AÑO)</label>
+                    <input type="text" id="fname" style="width: 100%;">
+                </td>
+                <td class="responseOptions" style="text-align: center;">
+                    <label style="font-size: 10px;">(MES)</label>
+                    <input type="text" id="fname" style="width: 100%;">
+                </td>
+                <td class="responseOptions" style="text-align: center;">
+                    <label style="font-size: 10px;">(DÍA)</label>
+                    <input type="text" id="fname" style="width: 100%;">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:left"
+                    class="Title">
+                    1.0 DATOS PERSONALES DEL INVESTIGADO
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Nombre (s) Completo (s)</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Apellido Paterno</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Apellido materno </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Fecha de Nacimiento (DD / MM / AAAA):</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Edad:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">RFC:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Estado civil y regimen matrimonial:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">CURP:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Grado de estudios:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Sexo:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Nacionalidad:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Cuenta con seguro de gastos médicos mayores:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Número de Seguro Social:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Teléfono (s):</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Teléfono (Trabajo):</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Ext:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Vive en casa:</label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Propia:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Rentada:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Otro:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Comprobante de domicilio exhibido:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Tiempo de radicar en el domicilio actual:</label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">(Años)</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">(Meses)</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Tiempo de radicar en la zona:</label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">(Años)</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">(Meses)</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Dirección Particular:</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Calle:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">No. Ext:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">No. Int:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">C.P:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Manzana:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Lote:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Colonia:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Ciudad:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Delegación / Municipio:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Estado:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Segunda Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr colspan="8">
+                <td colspan="8" class="responseOptions" style="text-align: left;">
+                    <h5>Domicilio anterior del investigado:</h5>
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Calle:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">No. Ext:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">No. Int:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">C.P:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Colonia:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Delegación / Condado / Municipio:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Ciudad:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Estado:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Tiempo que vivió en ese domicilio:</label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">años:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">meses:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Motivo de la mudanza:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.1 DATOS ADICIONALES.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Identificación presentada por el
+                            investigado:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Folio de la identificación que presenta:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cómo se enteró de Santander?:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Es aval, fiador o deudor solidario de algún
+                            crédito?:</label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <br>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿El investigado se encuentra demandado o
+                            juicio?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿A nombre de quién está el crédito del que es aval?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.2 DATOS PERSONALES DEL CÓNYUGE O CONCUBINO (A), (Y/O) DEPENDIENTES ECONOMICOS
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">PARENTESCO
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">EDAD
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">OCUPACION
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">PADRE:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Edad:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Direccion:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Ocupacion:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">MADRE:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Edad:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Direccion:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Ocupacion:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Tercera Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.3 DATOS DE LA VIVIENDA Y ECONÓMICOS
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuántas habitaciones tiene la vivienda?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Número de recámaras:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Número de baños:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿La vivienda cuenta con todos los servicios básicos?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuenta con lavadora y secadora de ropa que
+                            funcionen?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Número de televisores que tiene en casa:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuenta con televisión de cable?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuenta con estéreo (para música) que funcione?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuántas personas habitan la misma vivienda?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuántas personas participan en el ingreso familiar
+                            de manera mensual? (Incluido el candidato)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Quiénes?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Es su primer crédito hipotecario?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Cuenta actualmente con chofer o con servicio
+                            doméstico?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿De qué materiales está hecha la construcción de la
+                            vivienda?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-bottom: 1px solid;">
+                        <label style="font-size: 7px;">OBSERVACIONES
+                        </label>
+                    </td>
+                </tr>
+                <br>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border: 1px solid;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;border-top: 1px solid;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.4 GASTOS, CREDITOS Y BIENES DECLARADOS POR EL INVESTIGADO
+                    </td>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Agua:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Ayuda de limpieza
+                            mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Transporte público:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Otros gastos:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Luz:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Teléfono, televisión de
+                            paga e/o internet:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Recreación mensual, gastos fines de
+                            semana, etc.:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">¿Cuáles?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Gas:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Plan de celular y/o
+                            recargas:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Aplicaciones de película:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Alimentación
+                            (Comida solamente):
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Gastos educativos
+                            (Personales o dependientes)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Aplicaciones de música:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Despensa
+                            (Súper):
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Seguro de vida:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Consultas médicas, tratamientos o
+                            médicamento:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Renta:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Gasolina de automóvil:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Pensiones
+                            alimenticias:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">TOTAL
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="6" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">En caso de ser cubiertos
+                            los gastos por 2 o mas
+                            personas especificar el
+                            % que aporta el titular
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Cuarta Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    Relación de créditos y propiedades del investigado
+                </td>
+            </tr>
+            <tbody>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Tarjetas de crédito, departamentales o creditos personales</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Banco:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">¿Crédito activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Cantidad restante por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">N° Pagos restantes:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Abono mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Automóviles, camionetas o camiones a nombre del investigado.</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Marca:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Modelo:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Valor declarado:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">¿Pagado o Crédito activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Plazo en tiempo
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Inmuebles a nombre del investigado</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tipo de
+                            inmueble:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Dirección exacta de donde se encuentra:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Pagado o Crédito
+                            activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo en tiempo
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;"> TOTAL DE GASTOS EN CRÉDITOS Y
+                            PRESTAMOS:
+                        </label>
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Quinta Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    Relación de créditos y propiedades del cónyuge del investigado.
+                </td>
+            </tr>
+            <tbody>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Tarjetas de crédito, departamentales o prestamos personales
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">¿Crédito activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Cantidad restante por pagar?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo restante:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Bienes a nombre del conyugue (vehiculos / bienes inmuebles).
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Marca:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Modelo:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Valor declarado:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Pagado o Crédito activo?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo en tiempo por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Inmuebles a nombre del investigado
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tipo de
+                            inmueble:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Dirección exacta de donde se encuentra:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Pagado o Crédito
+                            activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Institución
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo en tiempo
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;"> TOTAL DE GASTOS EN CRÉDITOS Y
+                            PRESTAMOS:
+                        </label>
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Sexta Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    Relación de créditos y propiedades del cónyuge del investigado.
+                </td>
+            </tr>
+            <tbody>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Tarjetas de crédito, departamentales o prestamos personales
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">¿Crédito activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo restante:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Bienes a nombre del conyugue (vehiculos / bienes inmuebles).
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Marca:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Modelo:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Valor declarado:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Pagado o Crédito
+                            activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo en tiempo
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tipo de
+                            inmueble:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Dirección exacta de donde se encuentra :
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">¿Pagado o Crédito
+                            activo?:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Institución:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Cantidad restante por
+                            pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Plazo en tiempo
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Pago mensual
+                            por pagar:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;"> TOTAL DE GASTOS EN CRÉDITOS Y
+                            PRESTAMOS:
+                        </label>
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Septima Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    1.5 REFERENCIAS
+                </td>
+            </tr>
+            <tbody>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Familiares del solicitante (que no vivan en su mismo domicilio):
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Parentesco:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Teléfono (s) de contacto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Referencias personales (No familiares)
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Parentesco:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 6px;">Teléfono (s) de contacto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-bottom: 1px solid;">
+                        <label style="font-size: 7px;">OBSERVACIONES
+                        </label>
+                    </td>
+                </tr>
+                <br>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border: 1px solid;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Octava Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    1.6 INGRESOS FORMALES
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Nombre de empresa empleadora (Razón social y/o nombre comercial):
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Fecha de ingreso
+                        </label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Año)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Mes)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Día)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Puesto Actual:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Antigüedad en la empresa:
+                        </label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Años)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Meses)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Actividad específica de la
+                            empresa:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Antigüedad en el puesto:
+                        </label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Años)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Meses)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Fecha de última actualización de sueldo:
+                        </label>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Año)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Mes)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">(Día)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Domicilio laboral (Lugar donde desarrolla la actividad)
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Calle:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Delegación o municipio:
+                            :
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">No. Ext:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">No. Int:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Ciudad:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Nombre o número de edificio:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Estado:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Manzana:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Lote:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Teléfono (1)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Ext:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Colonia:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Teléfono (2)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Ext:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Octava Pagina  -->
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    1.7 Información de ingresos mensuales del investigado
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Descripción específica de la actividad que realiza:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Forma de comprobar ingresos:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Ingresos por nómina:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Ingresos por honorarios y/o comisiones mensuales:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Total de ingreso neto (Sumatoria de nómina,
+                            comisiones y/o honorarios)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Con relación a la cantidad expresada anteriormente:
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">En Porcentaje ¿Cuánto refleja en efectivo?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">En Porcentaje ¿Cuánto refleja en banco?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.8 Referencias laborales
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre jefe directo
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (1)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (2)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">1. Nombre de la referencia
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (1)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (2)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">2. Nombre de la referencia
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (1)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Teléfono (2)
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-bottom: 1px solid;">
+                        <label style="font-size: 7px;">OBSERVACIONES
+                        </label>
+                    </td>
+                </tr>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border: 1px solid;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-top: 1px solid;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Decima Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    1.9 INGRESOS ADICIONALES
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="6" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿El CANDIDATO CUENTA CON INGRESOS ADICIONALES? </label>
+                    </td>
+                    <td colspan="1" class="responseOptions">
+                        <span class='icon' style="font-size: 13px;">&nbsp;Si&nbsp;&nbsp;&nbsp;</span>
+                    </td>
+                    <td colspan="1" class="responseOptions">
+                        <span class='icon' style="font-size: 13px;">&nbsp;No&nbsp;&nbsp;&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Rentas, venta de producto o servicio independientes, empleado.
+                        </label>
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Si la respuesta es no, solicitar firma del candidato
+                            donde corrobora dicha información. </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>Actividades adicionales que desempeña</h5>
+                    </td>
+                </tr>
+                <td colspan="2" class="responseOptions" style="text-align: left;">
+                    <label style="font-size: 7px;">Actividad/Puesto
+                    </label>
+                    <input type="text" id="fname" style="width: 100%;">
+                </td>
+                <td colspan="6" class="responseOptions" style="text-align: left;">
+                    <label style="font-size: 7px;">Especificación de la actividad que desempeña el candidato
+                    </label>
+                    <input type="text" id="fname" style="width: 100%;">
+                </td>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.10 REFERENCIAS COMERCIALES
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>PROVEEDORES:
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Proveedor uno:
+                        </label>
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <span
+                            style="width: 100%; background-color: green;text-align: center;font: bold;font-style: normal;font-size: 12px;">
+                            bajo
+                        </span>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Proveedor dos:
+                        </label>
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <span
+                            style="width: 100%; background-color: yellow;text-align: center;font: bold;font-style: normal;font-size: 12px;">
+                            medio
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre o razón social:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre o razón social:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Persona que atiende y puesto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Persona que atiende y puesto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Producto o servicio:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Producto o servicio:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Monto y metodo de pago:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tel:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Monto y metodo de pago:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tel:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr colspan="8">
+                    <td colspan="8" class="responseOptions" style="text-align: left;">
+                        <h5>CLIENTES DE SUS ACTIVIDADES ADICIONALES :
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Proveedor uno:
+                        </label>
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <span
+                            style="width: 100%; background-color: red;text-align: center;font: bold;font-style: normal;font-size: 12px;">
+                            alto
+                        </span>
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 7px;">Proveedor dos:
+                        </label>
+                    </td>
+                    <td colspan="3" class="responseOptions" style="text-align: left;">
+                        <span
+                            style="width: 100%; background-color: yellow;text-align: center;font: bold;font-style: normal;font-size: 12px;">
+                            medio
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre o razón social:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Nombre o razón social:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Persona que atiende y puesto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Persona que atiende y puesto:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Producto o servicio:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Producto o servicio:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Monto y metodo de pago:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tel:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Monto y metodo de pago:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Tel:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 7px;">Comentarios:
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Onceava Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" class="responseOptions" style="text-align: left;">
+                    <h5>INGRESOS DE LA ACTIVIDAD ADICIONAL
+                    </h5>
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan="4" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Actividad </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">Monto </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">¿Ingreso en efectivo o banco?
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;">
+                        <label style="font-size: 10px;">TOTAL DE INGRESOS ADICIONALES MENSUALES
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-bottom: 1px solid;">
+                        <label style="font-size: 7px;">OBSERVACIONES
+                        </label>
+                    </td>
+                </tr>
+                <br>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border: 1px solid;">
+                    </td>
+                </tr>
+                <tr style="height: 10px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-top: 1px solid;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                        class="Title">
+                        1.11 INGRESOS DECLARADOS VS DOCUMENTACION PRESENTADA
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">INGRESOS DECLARADOS
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 10px;">INGRESOS COMPROBADOS
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: left;">
+                        <label style="font-size: 9px;">DOCUMENTACION QUE PRESENTA
+                        </label>
+                        <input type="text" id="fname" style="width: 100%;">
+                    </td>
+                    <td colspan="1" class="responseOptions" style="text-align: left;">
+                    </td>
+                </tr>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                    </td>
+                    <td colspan="4" class="responseOptions" style="text-align: center;">
+                        <hr>
+                        <label style="font-size: 7px;">FIRMA DEL
+                            CLIENTE
+                        </label>
+                    </td>
+                    <td colspan="2" class="responseOptions" style="text-align: center;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="responseOptions" style="text-align: center;border-bottom: 1px solid;">
+                        <label style="font-size: 7px;">OBSERVACIONES; INGRESOS DECLARADOS VS DOCUMENTACION PRESENTADA.
+                        </label>
+                    </td>
+                </tr>
+                <br>
+                <tr style="height: 150px !important; overflow:hidden !important;">
+                    <td colspan="8" class="responseOptions" style="text-align: center;border: 1px solid;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="page-break-after: always"></div>
+    <!--#endregion -->
+    <!--#region Onceava Pagina  -->
+    <br>
+    <div>
+        <table>
+            <tr>
+                <td colspan="8" style="background-color: #005288; color: white; font: bold;text-align:center"
+                    class="Title">
+                    1.12 FOTOGRAFIAS DE DOCUMENTO
+                </td>
+            </tr>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <!--#endregion -->
+</body>
+
+</html>
